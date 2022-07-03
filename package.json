@@ -1,0 +1,17 @@
+
+{
+  "name": "logs_backup",
+  "version": "1.0.0",
+  "description": "backup of openstack's components logs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahmed Gonzalez <ahmediglez@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.7.3"
+  } 
+  
+}
+
