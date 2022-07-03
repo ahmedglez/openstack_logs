@@ -1,12 +1,4 @@
 
 
-const fs = require('fs')
-
-const bit1 = fs.readFile('../logs/neutron.log', 'utf-8', (err, data)=>{
-    if(err){
-        console.log('error:', err);
-    }
-    else{
-        console.log(data)  }
-})
-console.log(bit1)
+const insert_data = require('../database/insert_data')
+insert_data.insert_data('glance', 'nuevo info')

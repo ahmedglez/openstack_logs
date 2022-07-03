@@ -1,12 +1,5 @@
 "use strict";
 
-var fs = require('fs');
+var insert_data = require('../database/insert_data');
 
-var bit1 = fs.readFile('../logs/neutron.log', 'utf-8', function (err, data) {
-  if (err) {
-    console.log('error:', err);
-  } else {
-    console.log(data);
-  }
-});
-console.log(bit1);
+insert_data.insert_data('glance', 'nuevo info');
