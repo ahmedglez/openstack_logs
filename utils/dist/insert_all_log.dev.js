@@ -1,15 +1,13 @@
 "use strict";
 
-var insert_all = function insert_all() {
-  var _require = require('../database/insert_data'),
-      insert = _require.insert;
+function insert_all() {
+  var _require = require('../utils/logs_to_json'),
+      insert_logs = _require.insert_logs;
 
-  insert('glance', 'glance_info');
-  insert('horizon', 'horizon_info');
-  insert('keystone', 'keystone_info');
-  insert('neutron', 'neutron_info');
-  insert('nova', 'nova_info');
-};
+  var p1 = new Promise(function (res, rej) {
+    insert_logs('glance', 'glance_info');
+  }).then(insert_logs('glance', 'glance_info')).then(insert_logs('keystone', 'keystone_info')).then(insert_logs('neutron', 'neutron_info')).then(insert_logs('nova', 'nova_info'));
+}
 
 module.exports = {
   insert_all: insert_all
