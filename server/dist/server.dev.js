@@ -9,18 +9,15 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 var _require = require('../api/load_json'),
-    load = _require.load; //Set the public folder
+    load = _require.load;
 
-
-app.use(express["static"]('../public')); //Allows us to parse POST data.
-
+app.use(express["static"]('../public'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(bodyParser.json()); //MEAN apps use a catchall after any routes created by Node.
-
+app.use(bodyParser.json());
 app.use('/app', express["static"]('../public/'));
-app.get("/load", function (req, res) {
+app.use('/load', function (req, res) {
   load();
 });
 app.get("/glance", function (req, res) {
