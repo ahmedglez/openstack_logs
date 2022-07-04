@@ -22,9 +22,6 @@ app.use('/load',(req, res) => {
 app.get("/glance", (req, res) => {
     res.sendFile(path.resolve('../jsons/glance.json'))
 })
-app.get("/horizon", (req, res) => {
-    res.sendFile(path.resolve('../jsons/horizon.json'))
-})
 app.get("/keystone", (req, res) => {
     res.sendFile(path.resolve('../jsons/keystone.json'))
 })

@@ -23,9 +23,6 @@ app.use('/load', function (req, res) {
 app.get("/glance", function (req, res) {
   res.sendFile(path.resolve('../jsons/glance.json'));
 });
-app.get("/horizon", function (req, res) {
-  res.sendFile(path.resolve('../jsons/horizon.json'));
-});
 app.get("/keystone", function (req, res) {
   res.sendFile(path.resolve('../jsons/keystone.json'));
 });

@@ -1,11 +1,11 @@
 const copy_logs = () => {
 	const exec = require('child_process').exec;
 	const path = require('path')
-	var absolutePath = path.resolve('C:\\Users\\Ahmed\\Documents\\openstack_example_logs')
+	var absolutePath = path.resolve('/var/snap/microstack/common/log')
 	var absolutePath2 = path.resolve('../logs')
 
 	exec(
-		'copy nova.log ' + absolutePath2, {
+		'tail nova.log ' + absolutePath2, {
 			cwd: absolutePath
 		},
 		function (err, stdout, stderr) {
@@ -15,7 +15,7 @@ const copy_logs = () => {
 		}
 	);
 	exec(
-		'copy neutron.log ' + absolutePath2, {
+		'tail neutron.log ' + absolutePath2, {
 			cwd: absolutePath
 		},
 		function (err, stdout, stderr) {
@@ -25,7 +25,7 @@ const copy_logs = () => {
 		}
 	);
 	exec(
-		'copy keystone.log ' + absolutePath2, {
+		'tail keystone.log ' + absolutePath2, {
 			cwd: absolutePath
 		},
 		function (err, stdout, stderr) {
@@ -35,7 +35,7 @@ const copy_logs = () => {
 		}
 	);
 	exec(
-		'copy glance.log ' + absolutePath2, {
+		'tail glance.log ' + absolutePath2, {
 			cwd: absolutePath
 		},
 		function (err, stdout, stderr) {
@@ -44,16 +44,7 @@ const copy_logs = () => {
 			console.log(stderr)
 		}
 	);
-	exec(
-		'copy horizon.log ' + absolutePath2, {
-			cwd: absolutePath
-		},
-		function (err, stdout, stderr) {
-			console.log(stdout);
-			console.log(err)
-			console.log(stderr)
-		}
-	);
+	
 };
 
 module.exports = {

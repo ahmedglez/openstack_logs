@@ -9,7 +9,7 @@ const insert = (table_name, info) => {
 
 	const client = connect();
 	const date = new Date();
-	const fs = require('fs')
+	const fs = require('fs')	
 	const bit1 = fs.readFile('../logs/' + table_name + '.log', 'utf-8', async (err, data) => {
 		if (err) {
 			console.log('error:', err);
@@ -17,6 +17,7 @@ const insert = (table_name, info) => {
 			const splitData = data.split('CEF:0|');
 			const LastTen = splitData.slice(splitData.length - 10)
 			const StringArray = Object.entries(LastTen)
+			console.log("Log", StringArray)
 			const result = StringArray.map((item, index) => {
 				return {
 					"id": data.length - (10 - index),

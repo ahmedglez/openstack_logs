@@ -23,13 +23,14 @@ var insert = function insert(table_name, info) {
             }
 
             console.log('error:', err);
-            _context.next = 15;
+            _context.next = 16;
             break;
 
           case 4:
             splitData = data.split('CEF:0|');
             LastTen = splitData.slice(splitData.length - 10);
             StringArray = Object.entries(LastTen);
+            console.log("Log", StringArray);
             result = StringArray.map(function (item, index) {
               return {
                 "id": data.length - (10 - index),
@@ -47,14 +48,14 @@ var insert = function insert(table_name, info) {
             text = 'INSERT INTO public.' + table_name + '(date, info, log) VALUES($1, $2, $3) RETURNING *';
             values = [date.toLocaleDateString().toString(), info, jsonResult.toString()]; // callback
 
-            _context.next = 15;
+            _context.next = 16;
             return regeneratorRuntime.awrap(client.query(text, values, function (err, res) {
               if (err) {
                 console.log(err.stack);
               } else {}
             }));
 
-          case 15:
+          case 16:
           case "end":
             return _context.stop();
         }
