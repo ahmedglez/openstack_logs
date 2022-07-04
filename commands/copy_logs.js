@@ -1,12 +1,11 @@
 const copy_logs = () => {
 	const exec = require('child_process').exec;
 	const path = require('path')
-	var absolutePath = path.resolve('/var/snap/microstack/common/log')
-	var absolutePath2 = path.resolve('../logs')
+	var absolutePath = path.resolve('/var/snap/microstack/common/log/')
 
 	exec(
-		'tail nova.log ' + absolutePath2, {
-			cwd: absolutePath
+		'tail nova.log ' + absolutePath + 'nova.log', {
+			
 		},
 		function (err, stdout, stderr) {
 			console.log(stdout);
@@ -15,8 +14,8 @@ const copy_logs = () => {
 		}
 	);
 	exec(
-		'tail neutron.log ' + absolutePath2, {
-			cwd: absolutePath
+		'tail neutron.log ' + absolutePath + 'neutron.log', {
+			
 		},
 		function (err, stdout, stderr) {
 			console.log(stdout);
@@ -25,8 +24,8 @@ const copy_logs = () => {
 		}
 	);
 	exec(
-		'tail keystone.log ' + absolutePath2, {
-			cwd: absolutePath
+		'tail keystone.log ' + absolutePath + 'keystone.log', {
+			
 		},
 		function (err, stdout, stderr) {
 			console.log(stdout);
@@ -35,8 +34,8 @@ const copy_logs = () => {
 		}
 	);
 	exec(
-		'tail glance.log ' + absolutePath2, {
-			cwd: absolutePath
+		'tail glance.log ' + absolutePath + 'glance.log', {
+			
 		},
 		function (err, stdout, stderr) {
 			console.log(stdout);
