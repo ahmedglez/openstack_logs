@@ -1,6 +1,6 @@
 const path = require('path');
 
-const insert_data = (table_name, info) => {
+const insert = (table_name, info) => {
 
 
 	const {
@@ -10,7 +10,7 @@ const insert_data = (table_name, info) => {
 	const client = connect();
 	const date = new Date();
 	const fs = require('fs')
-	const bit1 = fs.readFile('../logs/' + table_name + '.log', 'utf-8', (err, data) => {
+	const bit1 = fs.readFile('../logs/' + table_name + '.log', 'utf-8', async (err, data) => {
 		if (err) {
 			console.log('error:', err);
 		} else {
@@ -31,14 +31,13 @@ const insert_data = (table_name, info) => {
 				else {
 					console.log("File written successfully\n");
 					console.log("The written has the following contents:");
-					console.log(fs.readFileSync("books.txt", "utf8"));
 				}
 			})
 
 			const text = 'INSERT INTO public.' + table_name + '(date, info, log) VALUES($1, $2, $3) RETURNING *'
 			const values = [date.toLocaleDateString().toString(), info, jsonResult.toString()]
 			// callback
-			client.query(text, values, (err, res) => {
+			await client.query(text, values, (err, res) => {
 				if (err) {
 					console.log(err.stack)
 				} else {}
@@ -50,5 +49,5 @@ const insert_data = (table_name, info) => {
 };
 
 module.exports = {
-	insert_data
+	insert
 };
