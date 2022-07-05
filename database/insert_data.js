@@ -2,7 +2,6 @@ const insert_json_DB = (name) => {
     const mongo = require('mongodb')
     const MongoClient = require('mongodb').MongoClient
     const url = 'mongodb: // localhost: 27017 / openstack_logs_DB'
-    const file = require('../jsons/nova.json')
     
 
     const file = require('../jsons/'+name+'.json')

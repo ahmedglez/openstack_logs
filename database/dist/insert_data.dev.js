@@ -7,20 +7,24 @@ var insert_json_DB = function insert_json_DB(name) {
 
   var url = 'mongodb: // localhost: 27017 / openstack_logs_DB';
 
-  var file = require('../jsons/nova.json');
+  var file = require('../jsons/' + name + '.json');
 
   var f1 = file[25];
   var f2 = f1.logs.split(',');
-  var f3 = f2[1].slice(0, 24);
-  var f4 = f2[1].slice(24, f2[1].length);
-  console.log(f4);
+  var fecha = f2[1].slice(0, 24);
+  var info = f2[1].slice(24, f2[1].length);
+  var ob = {
+    id: f2[0],
+    fecha: f3,
+    info: f4
+  };
   MongoClient.connect(url, function (err, db) {
     if (err) {
       throw err;
     } else {
       console.log("Base de datos conectada!");
       var dbo = db.db("openstack_logs_DB");
-      dbo.collection(name).insertOne({}, function (err, res) {
+      dbo.collection(name).insertOne(obj, function (err, res) {
         if (err) {
           throw err;
         } else {
