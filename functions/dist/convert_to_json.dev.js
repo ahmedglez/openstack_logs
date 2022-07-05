@@ -19,8 +19,8 @@ var convert = function convert(name) {
               console.log("Log", StringArray);
               result = StringArray.map(function (item, index) {
                 return {
-                  "date": Date.now().toLocaleString(),
-                  "log": item.toString()
+                  "date": fecha.toLocaleDateString().toString + " " + fecha.toLocaleTimeString().toString(),
+                  "logs": item.toString()
                 };
               });
               jsonResult = JSON.stringify(result);
