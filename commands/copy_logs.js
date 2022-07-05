@@ -4,7 +4,7 @@ const copy_logs = (name) => {
 	var localPath = path.resolve('/home/ahmed/openstack_logs/logs/')
 	var absolutePath = path.resolve('/var/snap/microstack/common/log/')
 
-	const p1 = new Promise(req, res, () => {
+	const p1 = new Promise(res, rej, () => {
 			exec('rm ' + name + '.log')
 		})
 		.then(exec('tail -100 ' + absolutePath + name + '.log' + ' | tee ' + localPath + name + '.log',
