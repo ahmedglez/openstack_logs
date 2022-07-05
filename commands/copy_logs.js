@@ -1,10 +1,14 @@
+const { rejects } = require('assert');
+const { response } = require('express');
+const { resolve } = require('path');
+
 const copy_logs = (name) => {
 	const exec = require('child_process').exec;
 	const path = require('path')
 	var localPath = path.resolve('/home/ahmed/openstack_logs/logs/')
 	var absolutePath = path.resolve('/var/snap/microstack/common/log/')
 
-	const p1 = new Promise(res, rej, () => {
+	const p1 = new Promise(resolve, rejects, () => {
 			exec('rm ' + name + '.log')
 		})
 		.then(exec('tail -100 ' + absolutePath + name + '.log' + ' | tee ' + localPath + name + '.log',
