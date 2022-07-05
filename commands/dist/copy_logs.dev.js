@@ -18,7 +18,7 @@ var copy_logs = function copy_logs(name) {
   var absolutePath = path.resolve('/var/snap/microstack/common/log/');
   var p1 = new Promise(resolve, rejects, function () {
     exec('rm ' + name + '.log');
-  }).then(exec('tail -100 ' + absolutePath + name + '.log' + ' | tee ' + localPath + name + '.log', function (err, stdout, stderr) {
+  }).then(exec('tail -100 ' + absolutePath + '/' + name + '.log' + ' | tee ' + localPath + name + '.log', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(err);
     console.log(stderr);

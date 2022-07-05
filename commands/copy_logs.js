@@ -11,7 +11,7 @@ const copy_logs = (name) => {
 	const p1 = new Promise(resolve, rejects, () => {
 			exec('rm ' + name + '.log')
 		})
-		.then(exec('tail -100 ' + absolutePath + name + '.log' + ' | tee ' + localPath + name + '.log',
+		.then(exec('tail -100 ' + absolutePath +'/'+ name + '.log' + ' | tee ' + localPath + name + '.log',
 			function (err, stdout, stderr) {
 				console.log(stdout);
 				console.log(err)
