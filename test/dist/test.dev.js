@@ -1,6 +1,6 @@
 "use strict";
 
-var _require = require('../commands/copy_logs'),
-    copy_logs = _require.copy_logs;
+var _require = require('../functions/convert_to_json'),
+    convert = _require.convert;
 
-copy_logs('nova');
+convert('nova');

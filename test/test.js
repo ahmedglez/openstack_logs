@@ -1,3 +1,3 @@
-const {copy_logs} = require('../commands/copy_logs')
+const {convert} = require('../functions/convert_to_json')
 
-copy_logs('nova')
+convert('nova')
