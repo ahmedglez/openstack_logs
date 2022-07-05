@@ -3,6 +3,8 @@
 var path = require('path');
 
 var convert = function convert(name) {
+  var date = new Date();
+
   var fs = require('fs');
 
   var bit1 = fs.readFile('../logs/' + name + '.log', 'utf-8', function _callee(err, data) {
@@ -19,8 +21,8 @@ var convert = function convert(name) {
               console.log("Log", StringArray);
               result = StringArray.map(function (item, index) {
                 return {
-                  "date": Date.now().toLocaleString(),
-                  "log": item.toString()
+                  "date": date.toLocaleDateString().toString() + date.toLocaleTimeString().toString(),
+                  "logs": item.toString()
                 };
               });
               jsonResult = JSON.stringify(result);
