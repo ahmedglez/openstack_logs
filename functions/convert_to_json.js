@@ -2,7 +2,7 @@ const path = require('path');
 
 const convert = (name) => {
 
-	
+	const date = new Date()
 	const fs = require('fs')		
 	const bit1 = fs.readFile('../logs/' + name + '.log', 'utf-8', async (err, data) => {
 		if (err) {
@@ -13,8 +13,8 @@ const convert = (name) => {
 			console.log("Log", StringArray)
 			const result = StringArray.map((item, index) => {
 				return {					
-					"date": Date.now().toLocaleString(),
-					"log": item.toString()
+					"date": date.toDateString(),
+					"logs": item.toString()
 				}
 			})
 			const jsonResult = JSON.stringify(result)
