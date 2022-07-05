@@ -13,12 +13,13 @@ const convert = (name) => {
 			console.log("Log", StringArray)
 			const result = StringArray.map((item, index) => {
 				return {
-					"date": fecha.toLocaleDateString().toString + " " + fecha.toLocaleTimeString().toString(),
+					"date": fecha.toLocaleDateString().toString() + " " + fecha.toLocaleTimeString().toString(),
 					"logs": item.toString()
 				}
 			})
 			const jsonResult = JSON.stringify(result)
 			const JsonRoute = '../jsons/' + name + '.json'
+			console.log(JsonRoute)
 			fs.writeFile(path.resolve(JsonRoute), jsonResult, (err) => {
 				if (err)
 					console.log(err.message);
