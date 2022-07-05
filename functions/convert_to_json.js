@@ -2,8 +2,8 @@ const path = require('path');
 
 const convert = (name) => {
 
-
-	const fs = require('fs')
+	
+	const fs = require('fs')		
 	const bit1 = fs.readFile('../logs/' + name + '.log', 'utf-8', async (err, data) => {
 		if (err) {
 			console.log('error:', err);
@@ -12,14 +12,13 @@ const convert = (name) => {
 			const StringArray = Object.entries(splitData)
 			console.log("Log", StringArray)
 			const result = StringArray.map((item, index) => {
-				return {
-					"date": fecha.toLocaleDateString().toString() + " " + fecha.toLocaleTimeString().toString(),
-					"logs": item.toString()
+				return {					
+					"date": Date.now().toLocaleString(),
+					"log": item.toString()
 				}
 			})
 			const jsonResult = JSON.stringify(result)
 			const JsonRoute = '../jsons/' + name + '.json'
-			console.log(JsonRoute)
 			fs.writeFile(path.resolve(JsonRoute), jsonResult, (err) => {
 				if (err)
 					console.log(err.message);

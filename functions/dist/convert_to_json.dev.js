@@ -19,13 +19,12 @@ var convert = function convert(name) {
               console.log("Log", StringArray);
               result = StringArray.map(function (item, index) {
                 return {
-                  "date": fecha.toLocaleDateString().toString() + " " + fecha.toLocaleTimeString().toString(),
-                  "logs": item.toString()
+                  "date": Date.now().toLocaleString(),
+                  "log": item.toString()
                 };
               });
               jsonResult = JSON.stringify(result);
               JsonRoute = '../jsons/' + name + '.json';
-              console.log(JsonRoute);
               fs.writeFile(path.resolve(JsonRoute), jsonResult, function (err) {
                 if (err) console.log(err.message);else {
                   console.log("File written successfully\n");
