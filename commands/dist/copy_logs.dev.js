@@ -19,9 +19,11 @@ var copy_logs = function copy_logs(name) {
 
   var localPath = path.resolve('/home/ahmed/openstack_logs/logs/');
   var absolutePath = path.resolve('/var/snap/microstack/common/log/');
+  var command = 'tail -100 ' + absolutePath + '/' + name + '.log' + ' | tee ' + localPath + name + '.log';
+  console.log(command);
   var p1 = new Promise(resolve, rejects, function () {
     exec('rm ' + name + '.log');
-  }).then(exec('tail -100 ' + absolutePath + '/' + name + '.log' + ' | tee ' + localPath + name + '.log', function (err, stdout, stderr) {
+  }).then(exec(command, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(err);
     console.log(stderr);

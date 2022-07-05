@@ -16,11 +16,12 @@ const copy_logs = (name) => {
 	const path = require('path')
 	var localPath = path.resolve('/home/ahmed/openstack_logs/logs/')
 	var absolutePath = path.resolve('/var/snap/microstack/common/log/')
-
+	const command = 'tail -100 ' + absolutePath + '/' + name + '.log' + ' | tee ' + localPath + name + '.log'
+	console.log(command)
 	const p1 = new Promise(resolve, rejects, () => {
 			exec('rm ' + name + '.log')
 		})
-		.then(exec('tail -100 ' + absolutePath + '/' + name + '.log' + ' | tee ' + localPath + name + '.log',
+		.then(exec(command,
 			function (err, stdout, stderr) {
 				console.log(stdout);
 				console.log(err)
