@@ -21,7 +21,7 @@ var convert = function convert(name) {
               console.log("Log", StringArray);
               result = StringArray.map(function (item, index) {
                 return {
-                  "date": date.toDateString(),
+                  "date": date.toLocaleDateString().toString() + date.toLocaleTimeString().toString(),
                   "logs": item.toString()
                 };
               });
