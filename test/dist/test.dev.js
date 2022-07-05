@@ -1,7 +1,6 @@
 "use strict";
 
-/* const {convert} = require('../functions/convert_to_json')
+var _require = require('../functions/convert_to_json'),
+    convert = _require.convert;
 
-convert('nova') */
-var fecha = new Date();
-console.log();
+convert('nova');
