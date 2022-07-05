@@ -1,6 +1,6 @@
 "use strict";
 
-var _require = require('../functions/convert_to_json'),
-    convert = _require.convert;
+var _require = require('../database/insert_Data'),
+    insert_json_DB = _require.insert_json_DB;
 
-convert('nova');
+insert_json_DB('nova');

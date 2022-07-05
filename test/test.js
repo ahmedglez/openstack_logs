@@ -1,5 +1,6 @@
- const {
-     convert
- } = require('../functions/convert_to_json')
+const {
+    insert_json_DB
+} = require('../database/insert_Data')
 
-convert('nova')
+
+insert_json_DB('nova')
