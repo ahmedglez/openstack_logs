@@ -3,11 +3,14 @@
 var _require = require('assert'),
     rejects = _require.rejects;
 
-var _require2 = require('express'),
-    response = _require2.response;
+var _require2 = require('console'),
+    error = _require2.error;
 
-var _require3 = require('path'),
-    resolve = _require3.resolve;
+var _require3 = require('express'),
+    response = _require3.response;
+
+var _require4 = require('path'),
+    resolve = _require4.resolve;
 
 var copy_logs = function copy_logs(name) {
   var exec = require('child_process').exec;
@@ -22,7 +25,9 @@ var copy_logs = function copy_logs(name) {
     console.log(stdout);
     console.log(err);
     console.log(stderr);
-  })).then(console.log(name + '.log copiado exitosamente'));
+  })).then(console.log(name + '.log copiado exitosamente'))["catch"](function (error) {
+    return console.log(error);
+  });
 };
 
 module.exports = {
