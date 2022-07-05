@@ -1,12 +1,6 @@
 "use strict";
 
 var insert_json_DB = function insert_json_DB(name) {
-  var mongo = require('mongodb');
-
-  var MongoClient = require('mongodb').MongoClient;
-
-  var url = 'mongodb: // localhost: 27017 / openstack_logs_DB';
-
   var file = require('../jsons/' + name + '.json');
 
   var f1 = file[25];
@@ -18,22 +12,6 @@ var insert_json_DB = function insert_json_DB(name) {
     fecha: f3,
     info: f4
   };
-  MongoClient.connect(url, function (err, db) {
-    if (err) {
-      throw err;
-    } else {
-      console.log("Base de datos conectada!");
-      var dbo = db.db("openstack_logs_DB");
-      dbo.collection(name).insertOne(obj, function (err, res) {
-        if (err) {
-          throw err;
-        } else {
-          console.log("Documentos insertados en db");
-          db.close();
-        }
-      });
-    }
-  });
 };
 
 module.exports = {

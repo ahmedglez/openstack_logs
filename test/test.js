@@ -1,6 +1,15 @@
-const {
+/* const {
     insert_json_DB
 } = require('../database/insert_data')
 
 
-insert_json_DB('nova')
+insert_json_DB('nova') */
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/test');
+
+const Cat = mongoose.model('Cat', { name: String });
+
+const kitty = new Cat({ name: 'Zildjian' });
+kitty.save().then(() => console.log('meow'));
+
