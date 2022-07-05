@@ -1,11 +1,10 @@
 const path = require('path');
 
-const insert_logs = (table_name, info) => {
+const convert = (name) => {
 
-
-	const date = new Date();
-	const fs = require('fs')	
-	const bit1 = fs.readFile('../logs/' + table_name + '.log', 'utf-8', async (err, data) => {
+	
+	const fs = require('fs')		
+	const bit1 = fs.readFile('../logs/' + name + '.log', 'utf-8', async (err, data) => {
 		if (err) {
 			console.log('error:', err);
 		} else {
@@ -13,13 +12,13 @@ const insert_logs = (table_name, info) => {
 			const StringArray = Object.entries(splitData)
 			console.log("Log", StringArray)
 			const result = StringArray.map((item, index) => {
-				return {
-					"id": data.length - (10 - index),
+				return {					
+					"date": Date.now().toLocaleString(),
 					"log": item.toString()
 				}
 			})
 			const jsonResult = JSON.stringify(result)
-			const JsonRoute = '../jsons/' + table_name + '.json'
+			const JsonRoute = '../jsons/' + name + '.json'
 			fs.writeFile(path.resolve(JsonRoute), jsonResult, (err) => {
 				if (err)
 					console.log(err.message);
@@ -35,5 +34,5 @@ const insert_logs = (table_name, info) => {
 };
 
 module.exports = {
-	insert_logs
+	convert
 };

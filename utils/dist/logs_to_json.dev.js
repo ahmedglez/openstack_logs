@@ -2,12 +2,10 @@
 
 var path = require('path');
 
-var insert_logs = function insert_logs(table_name, info) {
-  var date = new Date();
-
+var convert = function convert(name) {
   var fs = require('fs');
 
-  var bit1 = fs.readFile('../logs/' + table_name + '.log', 'utf-8', function _callee(err, data) {
+  var bit1 = fs.readFile('../logs/' + name + '.log', 'utf-8', function _callee(err, data) {
     var splitData, StringArray, result, jsonResult, JsonRoute;
     return regeneratorRuntime.async(function _callee$(_context) {
       while (1) {
@@ -21,12 +19,12 @@ var insert_logs = function insert_logs(table_name, info) {
               console.log("Log", StringArray);
               result = StringArray.map(function (item, index) {
                 return {
-                  "id": data.length - (10 - index),
+                  "date": Date.now().toLocaleString(),
                   "log": item.toString()
                 };
               });
               jsonResult = JSON.stringify(result);
-              JsonRoute = '../jsons/' + table_name + '.json';
+              JsonRoute = '../jsons/' + name + '.json';
               fs.writeFile(path.resolve(JsonRoute), jsonResult, function (err) {
                 if (err) console.log(err.message);else {
                   console.log("File written successfully\n");
@@ -45,5 +43,5 @@ var insert_logs = function insert_logs(table_name, info) {
 };
 
 module.exports = {
-  insert_logs: insert_logs
+  convert: convert
 };

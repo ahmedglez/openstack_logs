@@ -1,54 +1,28 @@
-const path = require('path');
-
-const insert = (table_name, info) => {
 
 
-	const {
-		connect
-	} = require('../connection/database_connection');
+const insert_json_DB = (name) => {
+    const mongo = require('mongodb')
+    const MongoClient = require('mongodb').MongoClient
+    const url = 'mongodb: // localhost: 27017 / openstack_logs_DB'
 
-	const client = connect();
-	const date = new Date();
-	const fs = require('fs')	
-	const bit1 = fs.readFile('../logs/' + table_name + '.log', 'utf-8', async (err, data) => {
-		if (err) {
-			console.log('error:', err);
-		} else {
-			const splitData = data.split('CEF:0|');
-			const LastTen = splitData.slice(splitData.length - 10)
-			const StringArray = Object.entries(LastTen)
-			console.log("Log", StringArray)
-			const result = StringArray.map((item, index) => {
-				return {
-					"id": data.length - (10 - index),
-					"log": item.toString()
-				}
-			})
-			const jsonResult = JSON.stringify(result)
-			const JsonRoute = '../jsons/' + table_name + '.json'
-			fs.writeFile(path.resolve(JsonRoute), jsonResult, (err) => {
-				if (err)
-					console.log(err.message);
-				else {
-					console.log("File written successfully\n");
-					console.log("The written has the following contents:");
-				}
-			})
-
-			const text = 'INSERT INTO public.' + table_name + '(date, info, log) VALUES($1, $2, $3) RETURNING *'
-			const values = [date.toLocaleDateString().toString(), info, jsonResult.toString()]
-			// callback
-			await client.query(text, values, (err, res) => {
-				if (err) {
-					console.log(err.stack)
-				} else {}
-			})
-		}
-	})
-
-
-};
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            throw err
+        } else {
+            console.log("Base de datos conectada!");
+            const dbo = db.db("openstack_logs_DB")
+            dbo.collection(name).insertOne({}, function (err, res) {
+                if (err) {
+                    throw err
+                } else {
+                    console.log("Documentos insertados en db")
+                    db.close();
+                }
+            })
+        }
+    })
+}
 
 module.exports = {
-	insert
-};
+    insert_json_DB
+}
