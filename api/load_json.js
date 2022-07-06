@@ -1,18 +1,18 @@
-async function load(){
+async function load(name) {
     const {
         copy_logs
     } = require('../commands/copy_logs')
     const {
-        insert_all
-    } =  require('../utils/insert_all_log')
+        convert
+    } = require('../functions/convert_to_json')
+    const {
+        insert_json_DB
+    } = require('../database/insert_data')
 
-
-
-    const p1 = new Promise(function(res, rej){
-        
-    })
-     .then(insert_all())
-    
+    convert(name)
+    insert_json_DB(name)
 }
 
-module.exports = {load}
+module.exports = {
+    load
+}

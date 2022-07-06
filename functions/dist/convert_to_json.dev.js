@@ -8,7 +8,7 @@ var convert = function convert(name) {
   var fs = require('fs');
 
   var bit1 = fs.readFile('../logs/' + name + '.log', 'utf-8', function _callee(err, data) {
-    var splitData, StringArray, result, jsonResult, JsonRoute;
+    var splitData, StringArray, jsonArray, json, fileName, filePath;
     return regeneratorRuntime.async(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -18,19 +18,31 @@ var convert = function convert(name) {
             } else {
               splitData = data.split('\n');
               StringArray = Object.entries(splitData);
-              console.log("Log", StringArray);
-              result = StringArray.map(function (item, index) {
+              jsonArray = StringArray.map(function (item) {
+                var splitItem = item[1].split(' ');
+                var fecha = splitItem[0];
+                var hora = splitItem[1];
+                var nivel = splitItem[2];
+                var mensaje = splitItem[3];
+                var log = splitItem.slice(4, splitItem.length).toString();
                 return {
-                  "date": date.toLocaleDateString().toString() + date.toLocaleTimeString().toString(),
-                  "logs": item.toString()
+                  fecha: fecha,
+                  hora: hora,
+                  nivel: nivel,
+                  mensaje: mensaje,
+                  log: log
                 };
               });
-              jsonResult = JSON.stringify(result);
-              JsonRoute = '../jsons/' + name + '.json';
-              fs.writeFile(path.resolve(JsonRoute), jsonResult, function (err) {
-                if (err) console.log(err.message);else {
-                  console.log("File written successfully\n");
-                  console.log("The written has the following contents:");
+              json = JSON.stringify(jsonArray);
+              fileName = name + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json';
+              console.log(fileName);
+              filePath = path.join('../jsons/', fileName);
+              console.log(filePath);
+              fs.writeFile(filePath, json, function (err) {
+                if (err) {
+                  console.log('error:', err);
+                } else {
+                  console.log('Json guarado correctamente!');
                 }
               });
             }
