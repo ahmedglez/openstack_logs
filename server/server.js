@@ -1,8 +1,11 @@
 var express = require('express');
 const app = express();
+const date = new Date()
 var bodyParser = require('body-parser');
 var path = require('path');
-const {load} = require('../api/load_json')
+const {
+    load
+} = require('../api/load_json')
 
 app.use(express.static('../public'));
 
@@ -16,20 +19,32 @@ app.use(bodyParser.json());
 
 app.use('/app', express.static('../public/'));
 
-app.use('/load',(req, res) => {
-    load()    
+app.use('/compute', (req, res) => {
+    load('nova').then(() => {
+        setTimeout(() => {
+            res.sendFile(path.resolve('../jsons/nova' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'))
+        }, 1000);
+    }).catch(err => {
+        console.log(err)
+    })
 })
-app.get("/glance", (req, res) => {
-    res.sendFile(path.resolve('../jsons/glance.json'))
+app.use('/network', (req, res) => {
+    load('neutron').then(() => {
+        setTimeout(() => {
+            res.sendFile(path.resolve('../jsons/neutron' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'))
+        }, 1000);
+    }).catch(err => {
+        console.log(err)
+    })
 })
-app.get("/keystone", (req, res) => {
-    res.sendFile(path.resolve('../jsons/keystone.json'))
-})
-app.get("/neutron", (req, res) => {
-    res.sendFile(path.resolve('../jsons/neutron.json'))
-})
-app.get("/nova", (req, res) => {
-    res.sendFile(path.resolve('../jsons/nova.json'))
+app.use('/identity', (req, res) => {
+    load('keystone').then(() => {
+        setTimeout(() => {
+            res.sendFile(path.resolve('../jsons/keystone' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'))
+        }, 1000);
+    }).catch(err => {
+        console.log(err)
+    })
 })
 
 
