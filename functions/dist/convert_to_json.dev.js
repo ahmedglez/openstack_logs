@@ -26,14 +26,16 @@ var convert = function convert(name) {
                 var mensaje = splitItem[3];
                 var log = splitItem.slice(4, splitItem.length).toString();
                 return {
+                  id: nivel,
                   fecha: fecha,
                   hora: hora,
-                  nivel: nivel,
                   mensaje: mensaje,
                   log: log
                 };
               });
-              json = JSON.stringify(jsonArray);
+              json = JSON.stringify(jsonArray.sort(function (a, b) {
+                return a.hora - b.hora;
+              }), null, 2);
               fileName = name + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json';
               console.log(fileName);
               filePath = path.join('../jsons/', fileName);

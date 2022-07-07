@@ -18,14 +18,17 @@ const convert = (name) => {
 				const mensaje = splitItem[3]
 				const log = splitItem.slice(4, splitItem.length).toString()
 				return {
+					id: nivel,
 					fecha: fecha,
 					hora: hora,
-					nivel: nivel,
 					mensaje: mensaje,
 					log: log
 				}
 			})
-			const json = JSON.stringify(jsonArray)
+			const json = JSON.stringify(jsonArray.sort((a, b) => {
+				return a.hora - b.hora
+			}
+				), null, 2)
 			const fileName = name + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'
 			console.log(fileName);
 			const filePath = path.join('../jsons/', fileName)

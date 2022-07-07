@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>OpenStack Logs</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./style.css" />
+		<title>OpenStack Logs</title>
+	</head>
+	<body>
+		<header>
+			<img src="./images/openstack_logo.png" alt="" />
+			<h1>Logs de OpenStack</h1>
+		</header>
+		<div class="subtitle">
+			<h2>Seleccione el servicio que desea revisar</h2>
+		</div>
+		<main>
+			<div class="component-container">
+				<h3 class="component-title">Nova</h3>
+				<sub>Cómputo y Virtualización</sub>
+				<div class="img-container">
+					<img src="./images//nova.jpg" alt="" />
+				</div>
+				<div class="button-container">
+					<a href="./compute" class="button">Ver logs</a>
+				</div>
+			</div>
 
-</head>
-<body>
-    <div id="root"></div>
-<h1>Hola Mundo</h1>
+			<div class="component-container">
+				<h3 class="component-title">Neutron</h3>
+				<sub>Conectividad y Redes</sub>
+				<div class="img-container">
+					<img src="./images/neutron.jpg" alt="" />
+				</div>
+				<div class="button-container">
+					<a href="./network" class="button">Ver logs</a>
+				</div>
+			</div>
 
-
-</body>
+			<div class="component-container">
+				<h3 class="component-title">Keystone</h3>
+				<sub>Autenticación y Seguridad</sub>
+				<div class="img-container">
+					<img src="./images//keystone.png" alt="" />
+				</div>
+				<div class="button-container">
+					<a href="./identity" class="button">Ver logs</a>
+				</div>
+			</div>
+		</main>
+	</body>
 </html>
