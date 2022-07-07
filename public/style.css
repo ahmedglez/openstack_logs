@@ -1,6 +1,8 @@
 body {
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
 		'Lucida Sans', Arial, sans-serif;
+	width: 100%;
+	height: 100%;
 }
 
 header {
@@ -10,17 +12,17 @@ header {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 5%;
-    position: sticky;
+	position: sticky;
 }
 header h1 {
 	font-size: 1.5em;
 	font-weight: bold;
 	color: #333;
-    text-align: center;
+	text-align: center;
 }
 header img {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
@@ -28,20 +30,18 @@ header img {
 	background-position: center;
 	background-size: contain;
 	background-repeat: repeat;
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
-.subtitle{
-    width: 100%;
-    font-size: 0.9em;
-    color: #333;
-    text-align: center;
-    margin: 0 auto;
+.subtitle {
+	width: 100%;
+	font-size: 0.9em;
+	color: #333;
+	text-align: center;
+	margin: 0 auto;
 
-    margin-top: 20px;
+	margin-top: 20px;
 }
-
-
 
 main {
 	width: 85%;
@@ -57,13 +57,14 @@ main {
 	border-bottom: 1px solid #e5e5e5;
 	text-align: center;
 	box-shadow: 0px 0px 10px #c8c7c7;
-    border-radius: 15px;
-    transition-duration: 250ms;
-    cursor: pointer;
+	border-radius: 15px;
+	transition-duration: 250ms;
+	cursor: pointer;
 }
 
 .component-container:hover {
-	box-shadow: 0px 0px 18px #a5a5a5;
+	box-shadow: 0px 0px 18px #a8a7a7;
+	transform: scale(1.004);
 }
 
 .component-container .component-title {
@@ -97,31 +98,31 @@ main {
 	font-size: 1.1em;
 	color: #333;
 	margin-bottom: 8%;
+	transition-duration: 250ms;
 }
 
 .component-container a:hover {
 	color: #00bcd4;
 }
 
-@media screen and (max-width: 420px){
-    header{
-        width: 100%;
-        font-size: 0.9em;
-        align-items: center;
-        margin-bottom: 25px;
-    }
-    header img{
-        margin-top: 2px;
-    }
-   
-    h2{
-        margin-top: 50px;
-        font-size: 1.1em;
-    }
+@media screen and (max-width: 420px) {
+	header {
+		width: 100%;
+		font-size: 0.9em;
+		align-items: center;
+		margin-bottom: 25px;
+	}
+	header img {
+		margin-top: 2px;
+	}
+
+	h2 {
+		margin-top: 50px;
+		font-size: 1.1em;
+	}
 }
 
 @media screen and (max-width: 800px) {
-    
 	main {
 		width: 100%;
 		height: fit-content;

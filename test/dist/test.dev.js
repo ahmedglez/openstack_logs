@@ -1,51 +1,64 @@
 "use strict";
 
-var _require = require('../database/insert_data'),
-    insert_json_DB = _require.insert_json_DB;
+/* detect changes on a file with node.js and compare*/
+var fs = require('fs');
 
-var _require2 = require('../functions/convert_to_json'),
-    convert = _require2.convert; //crear promesa
+var path = require('path');
 
-/* const promesa = new Promise((resolve, reject) => {
-    convert('neutron')
-})
-promesa.then(convert('keystone'))
-promesa.then(convert('nova'))
-promesa.then(insert_json_DB('neutron'))
-promesa.then(insert_json_DB('keystone'))
-promesa.then(insert_json_DB('nova'))
-promesa.catch(err => console.log(err)); */
+var file = path.resolve('./keystone.log');
+console.log(file);
+var watcher = fs.watchFile(file, function (event, filename) {
+  console.log('event: ' + event);
+  console.log('Cambios hechos en ' + filename);
 
+  if (filename) {
+    console.log('filename: ' + filename);
+  } else {
+    console.log('filename: ' + file);
+  }
+});
+watcher.on('change', function (event, filename) {
+  console.log('event: ' + event);
+  console.log('Cambios hechos en ' + filename);
 
-function convert_jsons() {
-  convert('nova');
-  convert('neutron');
-  convert('keystone');
-}
-
-function insert_jsons() {
-  insert_json_DB('nova');
-  insert_json_DB('neutron');
-  insert_json_DB('keystone');
-}
-
-function main() {
-  return regeneratorRuntime.async(function main$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          convert_jsons();
-          _context.next = 3;
-          return regeneratorRuntime.awrap(setTimeout(function () {
-            insert_jsons();
-          }, 1000));
-
-        case 3:
-        case "end":
-          return _context.stop();
-      }
-    }
-  });
-}
-
-main();
+  if (filename) {
+    console.log('filename: ' + filename);
+  } else {
+    console.log('filename: ' + file);
+  }
+});
+watcher.on('error', function (err) {
+  console.log('error: ' + err);
+});
+watcher.on('close', function () {
+  console.log('close');
+});
+watcher.on('ready', function () {
+  console.log('ready');
+});
+watcher.on('rename', function (oldName, newName) {
+  console.log('rename');
+  console.log('oldName: ' + oldName);
+  console.log('newName: ' + newName);
+});
+watcher.on('delete', function (filePath) {
+  console.log('delete');
+  console.log('filePath: ' + filePath);
+});
+watcher.on('add', function (filePath) {
+  console.log('add');
+  console.log('filePath: ' + filePath);
+});
+watcher.on('change', function (filePath) {
+  console.log('change');
+  console.log('filePath: ' + filePath);
+});
+watcher.on('unlink', function (filePath) {
+  console.log('unlink');
+  console.log('filePath: ' + filePath);
+});
+watcher.on('moved', function (oldName, newName) {
+  console.log('moved');
+  console.log('oldName: ' + oldName);
+  console.log('newName: ' + newName);
+});

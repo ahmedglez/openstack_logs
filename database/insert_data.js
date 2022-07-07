@@ -15,7 +15,7 @@ const insert_json_DB = (name) => {
         const collection = db.collection(name);
         const fs = require('fs');
         const path = require('path');
-        const fileName = name + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json';
+        const fileName = name +'.json';
         const filePath = path.join('../jsons/', fileName);
         console.log("FILEPATH",filePath);
         fs.readFile(filePath, 'utf-8', function (err, data) {

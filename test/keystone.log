@@ -97,5 +97,4 @@
 2022-07-05 12:25:51.211 8322 ERROR oslo.messaging._drivers.impl_rabbit [req-83c11e82-8173-413b-9bb2-77eebc5fcbab - - - - -] Connection failed: [Errno 111] ECONNREFUSED (retrying in 32.0 seconds): ConnectionRefusedError: [Errno 111] ECONNREFUSED
 2022-07-05 12:25:51.211 8321 ERROR oslo.messaging._drivers.impl_rabbit [req-cb409c97-4c82-443e-8017-4f25d8c15d98 - - - - -] Connection failed: [Errno 111] ECONNREFUSED (retrying in 32.0 seconds): ConnectionRefusedError: [Errno 111] ECONNREFUSED
 2022-07-05 12:25:51.211 8324 ERROR oslo.messaging._drivers.impl_rabbit [req-9d81ecf1-cbf2-4164-8271-28f1247c419b - - - - -] Connection failed: [Errno 111] ECONNREFUSED (retrying in 32.0 seconds): ConnectionRefusedError: [Errno 111] ECONNREFUSED
-2022-07-05 12:25:51.212 8323 ERROR oslo.messaging._drivers.impl_rabbit [req-452aac2e-9c15-4406-8660-7c311e6a5a3a - - - - -] Connection failed: [Errno 111] ECONNREFUSED (retrying in 32.0 seconds): ConnectionRefusedError: [Errno 111] MAMAWEBAZOOM
-
+2022-07-05 12:25:51.212 8323 ERROR oslo.messaging._drivers.impl_rabbit [req-452aac2e-9c15-4406-8660-7c311e6a5a3a - - - - -] Connection failed: [Errno 111] ECONNREFUSED (retrying in 32.0 seconds): ConnectionRefusedError: [Errno 111] ECONNREFUSED

@@ -3,12 +3,13 @@
 var path = require('path');
 
 var convert = function convert(name) {
-  var date = new Date();
+  var _require = require('./compare_json'),
+      compare = _require.compare;
 
   var fs = require('fs');
 
   var bit1 = fs.readFile('../logs/' + name + '.log', 'utf-8', function _callee(err, data) {
-    var splitData, StringArray, jsonArray, json, fileName, filePath;
+    var splitData, StringArray, jsonArray, json;
     return regeneratorRuntime.async(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -33,20 +34,11 @@ var convert = function convert(name) {
                   log: log
                 };
               });
-              json = JSON.stringify(jsonArray.sort(function (a, b) {
-                return a.hora - b.hora;
-              }), null, 2);
-              fileName = name + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json';
-              console.log(fileName);
-              filePath = path.join('../jsons/', fileName);
-              console.log(filePath);
-              fs.writeFile(filePath, json, function (err) {
-                if (err) {
-                  console.log('error:', err);
-                } else {
-                  console.log('Json guarado correctamente!');
-                }
+              jsonArray = jsonArray.sort(function (a, b) {
+                return parseInt(a.id) - parseInt(b.id);
               });
+              json = JSON.stringify(jsonArray, null, 2);
+              compare(json, name);
             }
 
           case 1:
