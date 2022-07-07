@@ -21,7 +21,7 @@ app.use('/app', express["static"]('../public/'));
 app.use('/compute', function (req, res) {
   load('nova').then(function () {
     setTimeout(function () {
-      res.sendFile(path.resolve('../jsons/nova' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'));
+      res.sendFile(path.resolve('../jsons/nova' + '.json'));
     }, 1000);
   })["catch"](function (err) {
     console.log(err);
@@ -30,7 +30,7 @@ app.use('/compute', function (req, res) {
 app.use('/network', function (req, res) {
   load('neutron').then(function () {
     setTimeout(function () {
-      res.sendFile(path.resolve('../jsons/neutron' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'));
+      res.sendFile(path.resolve('../jsons/neutron' + '.json'));
     }, 1000);
   })["catch"](function (err) {
     console.log(err);
@@ -39,7 +39,7 @@ app.use('/network', function (req, res) {
 app.use('/identity', function (req, res) {
   load('keystone').then(function () {
     setTimeout(function () {
-      res.sendFile(path.resolve('../jsons/keystone' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'));
+      res.sendFile(path.resolve('../jsons/keystone' + '.json'));
     }, 1000);
   })["catch"](function (err) {
     console.log(err);

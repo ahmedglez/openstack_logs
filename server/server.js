@@ -22,7 +22,7 @@ app.use('/app', express.static('../public/'));
 app.use('/compute', (req, res) => {
     load('nova').then(() => {
         setTimeout(() => {
-            res.sendFile(path.resolve('../jsons/nova' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'))
+            res.sendFile(path.resolve('../jsons/nova' +  '.json'))
         }, 1000);
     }).catch(err => {
         console.log(err)
@@ -31,7 +31,7 @@ app.use('/compute', (req, res) => {
 app.use('/network', (req, res) => {
     load('neutron').then(() => {
         setTimeout(() => {
-            res.sendFile(path.resolve('../jsons/neutron' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'))
+            res.sendFile(path.resolve('../jsons/neutron' +'.json'))
         }, 1000);
     }).catch(err => {
         console.log(err)
@@ -40,7 +40,7 @@ app.use('/network', (req, res) => {
 app.use('/identity', (req, res) => {
     load('keystone').then(() => {
         setTimeout(() => {
-            res.sendFile(path.resolve('../jsons/keystone' + '_' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + '.json'))
+            res.sendFile(path.resolve('../jsons/keystone' +  '.json'))
         }, 1000);
     }).catch(err => {
         console.log(err)
