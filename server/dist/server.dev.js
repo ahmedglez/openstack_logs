@@ -9,8 +9,13 @@ var bodyParser = require('body-parser');
 
 var path = require('path');
 
-var _require = require('../api/load_json'),
-    load = _require.load;
+var _require = require('../api/logs_watcher'),
+    watch = _require.watch;
+
+watch();
+
+var _require2 = require('../api/load_json'),
+    load = _require2.load;
 
 app.use(express["static"]('../public'));
 app.use(bodyParser.urlencoded({
@@ -19,31 +24,19 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use('/app', express["static"]('../public/'));
 app.use('/compute', function (req, res) {
-  load('nova').then(function () {
-    setTimeout(function () {
-      res.sendFile(path.resolve('../jsons/nova' + '.json'));
-    }, 1000);
-  })["catch"](function (err) {
-    console.log(err);
-  });
+  setTimeout(function () {
+    res.sendFile(path.resolve('../jsons/nova' + '.json'));
+  }, 500);
 });
 app.use('/network', function (req, res) {
-  load('neutron').then(function () {
-    setTimeout(function () {
-      res.sendFile(path.resolve('../jsons/neutron' + '.json'));
-    }, 1000);
-  })["catch"](function (err) {
-    console.log(err);
-  });
+  setTimeout(function () {
+    res.sendFile(path.resolve('../jsons/neutron' + '.json'));
+  }, 500);
 });
 app.use('/identity', function (req, res) {
-  load('keystone').then(function () {
-    setTimeout(function () {
-      res.sendFile(path.resolve('../jsons/keystone' + '.json'));
-    }, 1000);
-  })["catch"](function (err) {
-    console.log(err);
-  });
+  setTimeout(function () {
+    res.sendFile(path.resolve('../jsons/keystone' + '.json'));
+  }, 1000);
 });
 app.listen(1337);
 console.log('Server started at ' + Date());

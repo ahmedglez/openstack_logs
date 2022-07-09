@@ -4,6 +4,10 @@ const date = new Date()
 var bodyParser = require('body-parser');
 var path = require('path');
 const {
+    watch
+} = require('../api/logs_watcher');
+watch()
+const {
     load
 } = require('../api/load_json')
 
@@ -20,31 +24,20 @@ app.use(bodyParser.json());
 app.use('/app', express.static('../public/'));
 
 app.use('/compute', (req, res) => {
-    load('nova').then(() => {
-        setTimeout(() => {
-            res.sendFile(path.resolve('../jsons/nova' +  '.json'))
-        }, 1000);
-    }).catch(err => {
-        console.log(err)
-    })
+    setTimeout(() => {
+        res.sendFile(path.resolve('../jsons/nova' + '.json'))
+    }, 500);
 })
 app.use('/network', (req, res) => {
-    load('neutron').then(() => {
-        setTimeout(() => {
-            res.sendFile(path.resolve('../jsons/neutron' +'.json'))
-        }, 1000);
-    }).catch(err => {
-        console.log(err)
-    })
+    setTimeout(() => {
+        res.sendFile(path.resolve('../jsons/neutron' + '.json'))
+    }, 500);
 })
 app.use('/identity', (req, res) => {
-    load('keystone').then(() => {
-        setTimeout(() => {
-            res.sendFile(path.resolve('../jsons/keystone' +  '.json'))
-        }, 1000);
-    }).catch(err => {
-        console.log(err)
-    })
+    setTimeout(() => {
+        res.sendFile(path.resolve('../jsons/keystone' + '.json'))
+    }, 1000);
+
 })
 
 
